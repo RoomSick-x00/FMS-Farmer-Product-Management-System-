@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}
+Agro Products
+{% endblock title %}
+
+{% block intro %}
+<section id="intro">
+  <div class="intro-container" data-aos="zoom-in" data-aos-delay="100" style="margin-top: 80px;">
+    <h3 class="text-center" style="color: white;"><span>Agro Products</span></h3>
+    {% with messages=get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <br>
+    <!-- Added container with styling -->
+    <div style="background-color: rgba(80, 80, 80, 0.7); padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+      <div class="container mt-3">
+        <div class="row">
+         {% for p in query %}
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <b><h5 class="card-title">{{p.productname}}</h5></b>
+                <b>Price : {{p.price}}</b>
+                <hr>
+                <p class="card-text" style = "color:rgb(177, 114, 13)">{{p.productdesc}}</p>
+                <p style = "color:rgb(103, 59, 8)">Owner : {{p.username}}</p>
+                <p style = "color:rgb(103, 59, 8)">Email : {{p.email}}</p>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to={{p.email}}" target="_blank" class="btn btn-success">Purchase</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+{% block body %}
+{% endblock body %}

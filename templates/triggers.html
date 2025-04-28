@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Triggers
+{% endblock title %}
+
+{% block intro %}
+<section id="intro" class="reduced-height">
+    <div class="intro-container" data-aos="zoom-in" data-aos-delay="100">
+        <h3 class="text-center" style="color: white;">
+            <span>Farmers Triggers Records</span>
+        </h3>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <br>
+        
+        <!-- Added container with styling -->
+        <div style="background-color: rgba(80, 80, 80, 0.7); padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+            <div class="container mt-4">
+                <table class="table table-striped" style="color: white; background-color: rgba(60, 60, 60, 0.8);">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">FARMER ID</th>
+                            <th scope="col">ACTION</th>
+                            <th scope="col">TIMESTAMP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in query %}
+                            <tr>
+                                <td>{{ post.fid }}</td>
+                                <td>{{ post.action }}</td>
+                                <td>{{ post.timestamp }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock intro %}
+
+{% block body %}
+{% endblock body %}
